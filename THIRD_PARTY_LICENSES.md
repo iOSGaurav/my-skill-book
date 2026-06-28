@@ -1,16 +1,17 @@
 # Third-party licenses
 
-## Staged imports under `imported-skills/` (pending reformatting)
+## Imports flattened into `skills/`
 
-These were imported on 2026-06-28 into `imported-skills/<source>/` and are not yet
-flattened into the top-level skill layout or registered in the plugin manifest.
+Imported on 2026-06-28 and flattened into `skills/<name>/` (kebab-cased; two
+name-collisions dropped: incoming `swift-concurrency` and `swiftui-liquid-glass`
+already existed). Heavy binary assets (images) were pruned.
 
-| Source | Folder | License | Notes |
-|---|---|---|---|
-| [patrickserrano/skills](https://github.com/patrickserrano/skills) | `imported-skills/patrickserrano-skills/` | **MIT** (LICENSE included) | iOS/macOS skills; `github-issue-fix-flow` excluded |
-| [qunwang6/swift-ios-ui](https://github.com/qunwang6/swift-ios-ui) | `imported-skills/qunwang6-swift-ios-ui/` | **No license file** ⚠️ | all-rights-reserved by default |
-| [mosif16/codex-skills](https://github.com/mosif16/codex-skills) | `imported-skills/mosif16-codex-skills/` | **No license file** ⚠️ | all-rights-reserved by default; only iOS/Swift/mobile skills imported (Rust + general skills excluded) |
-| [nonameplum/agent-skills](https://github.com/nonameplum/agent-skills) | `imported-skills/nonameplum-agent-skills/` | **No license file** ⚠️ | all-rights-reserved by default; `functional-programming-developer` + `git-user` excluded |
+| Source | License | Notes |
+|---|---|---|
+| [patrickserrano/skills](https://github.com/patrickserrano/skills) | **MIT** (text at `licenses/patrickserrano-skills-LICENSE`) | iOS/macOS skills; `github-issue-fix-flow` excluded |
+| [qunwang6/swift-ios-ui](https://github.com/qunwang6/swift-ios-ui) | **No license file** ⚠️ | all-rights-reserved by default |
+| [mosif16/codex-skills](https://github.com/mosif16/codex-skills) | **No license file** ⚠️ | all-rights-reserved by default; only iOS/Swift/mobile skills imported (Rust + general excluded) |
+| [nonameplum/agent-skills](https://github.com/nonameplum/agent-skills) | **No license file** ⚠️ | all-rights-reserved by default; `functional-programming-developer` + `git-user` excluded |
 
 > ⚠️ **License risk:** the three "no license file" sources grant no rights to
 > copy, modify, or redistribute by default. Resolve their licensing (ask the
