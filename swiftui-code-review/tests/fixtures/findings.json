@@ -1,0 +1,34 @@
+[
+  {
+    "path": "Sources/LoginView.swift",
+    "line": 42,
+    "severity": "Blocker",
+    "category": "Memory management",
+    "issue": "Task closure captures self strongly, creating a retain cycle.",
+    "suggestion": "Capture [weak self] and guard at the top of the closure."
+  },
+  {
+    "path": "Sources/LoginView.swift",
+    "line": 30,
+    "severity": "High",
+    "category": "View decomposition & performance",
+    "issue": "Network request is triggered inside body, re-running on every re-render.",
+    "suggestion": "Move the request into a .task or the view model."
+  },
+  {
+    "path": "Sources/HeaderView.swift",
+    "line": 18,
+    "severity": "Medium",
+    "category": "Accessibility",
+    "issue": "Icon-only button has no accessibilityLabel.",
+    "suggestion": "Add .accessibilityLabel(\"Log in\")."
+  },
+  {
+    "path": "Sources/HeaderView.swift",
+    "line": 5,
+    "severity": "Nit",
+    "category": "Naming & conventions",
+    "issue": "Variable name `v` is not descriptive.",
+    "suggestion": "Rename to something meaningful like `loginButton`."
+  }
+]

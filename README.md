@@ -8,6 +8,7 @@ agent (`agent.md`), the worker script, and tests.
 jira-branch/      Create a git branch from a Jira ticket URL
 jira-commit/      Commit changes with the branch's Jira ID as a message prefix
 jira-subtasks/    Plan platform-aware subtasks for a Jira story (copyable output)
+swiftui-code-review/  Review SwiftUI/iOS changes; inline PR comments or HTML/MD report
 ```
 
 A typical flow: create a branch from a Jira ticket, make changes, then commit —
@@ -135,6 +136,46 @@ or targets both, you'll be asked which platform to plan for.
 
 ---
 
+## swiftui-code-review
+
+Review SwiftUI / iOS changes against a comprehensive parameter checklist
+(state, performance, concurrency, memory, accessibility, security, testing,
+localization, DI, conventions, PR readiness — see
+[`swiftui-code-review/parameters.md`](swiftui-code-review/parameters.md)).
+
+Input can be a **GitHub PR URL**, a **branch**, or the **current working diff**.
+For a PR URL the review is posted as inline PR comments; otherwise an HTML report
+(Markdown optional) is generated with the same findings.
+
+Claude reads the diff, applies the rubric, and produces a `findings.json` array
+(`path`, `line`, `severity`, `category`, `issue`, `suggestion`) which the scripts
+turn into the chosen output.
+
+### Usage
+
+```bash
+# 1. collect the diff to review
+swiftui-code-review/scripts/collect-diff.sh --pr "https://github.com/owner/repo/pull/123"
+swiftui-code-review/scripts/collect-diff.sh --branch feature/PROJ-1-x
+swiftui-code-review/scripts/collect-diff.sh            # current working diff
+
+# 2a. PR URL -> post inline review comments (needs authenticated gh)
+swiftui-code-review/scripts/post-review.sh --pr "<url>" --findings findings.json \
+  --event REQUEST_CHANGES          # add --print to preview the payload only
+
+# 2b. branch / current diff -> report (HTML default, --md for Markdown)
+swiftui-code-review/scripts/render-report.sh --findings findings.json --out review.html
+swiftui-code-review/scripts/render-report.sh --findings findings.json --md --out review.md
+```
+
+Severity ∈ Blocker / High / Medium / Low / Nit; the verdict is **Request
+changes** when any Blocker/High is present.
+
+> Posting to a PR requires the [`gh`](https://cli.github.com) CLI, authenticated.
+> The test suite exercises posting only via `--print` (no network).
+
+---
+
 ## Using with Claude Code
 
 Each folder's `SKILL.md` and `agent.md` instruct Claude how to run the workflow.
@@ -153,6 +194,7 @@ run the scripts directly as shown above.
 bash jira-branch/tests/test.sh
 bash jira-commit/tests/test.sh
 bash jira-subtasks/tests/test.sh
+bash swiftui-code-review/tests/test.sh
 ```
 
 Both suites run offline (no Jira, no network) using dry-run / print modes and a
