@@ -15,7 +15,7 @@ Process:
    - Do NOT include the Jira key yourself — the script adds it.
 3. Commit using the skill's helper, which derives the Jira key from the current
    branch and prepends it as `KEY: <subject>`:
-   `skills/jira-commit/scripts/commit.sh "<subject>"`
+   `jira-commit/scripts/commit.sh "<subject>"`
 
 Report back the final commit message. On failure, relay the script's error
 message verbatim (e.g. no Jira key in branch name, nothing to commit).

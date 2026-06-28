@@ -11,8 +11,8 @@ the work. Do not reimplement the logic yourself — the script handles URL parsi
 the Jira API call, branch naming, and git.
 
 Steps:
-1. Locate the script at `skills/jira-branch/scripts/create-branch.sh` (it lives in
-   the same repo/plugin as this agent).
+1. Locate the script at `jira-branch/scripts/create-branch.sh` (it lives in the
+   same folder as this agent, alongside `SKILL.md`).
 2. Run it with the Jira URL the caller gave you. Pass `--base` only if the caller
    specified a base branch.
 3. If you want to preview without making changes, run with `--dry-run` first.

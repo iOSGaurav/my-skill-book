@@ -5,7 +5,7 @@
 #
 set -uo pipefail
 
-SCRIPT="$(cd "$(dirname "$0")/.." && pwd)/skills/jira-branch/scripts/create-branch.sh"
+SCRIPT="$(cd "$(dirname "$0")/.." && pwd)/scripts/create-branch.sh"
 PASS=0
 FAIL=0
 

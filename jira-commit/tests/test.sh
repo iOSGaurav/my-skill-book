@@ -5,7 +5,7 @@
 #
 set -uo pipefail
 
-SCRIPT="$(cd "$(dirname "$0")/.." && pwd)/skills/jira-commit/scripts/commit.sh"
+SCRIPT="$(cd "$(dirname "$0")/.." && pwd)/scripts/commit.sh"
 PASS=0
 FAIL=0
 
