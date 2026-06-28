@@ -10,6 +10,8 @@ jira-branch/      Create a git branch from a Jira ticket URL
 jira-commit/      Commit changes with the branch's Jira ID as a message prefix
 jira-subtasks/    Plan platform-aware subtasks for a Jira story (copyable output)
 swiftui-code-review/  Review SwiftUI/iOS changes; inline PR comments or HTML/MD report
+swift-expert/         iOS / Swift implementation guidance (imported)
+kotlin-specialist/    Android / Kotlin implementation guidance (imported)
 ```
 
 A typical flow: create a branch from a Jira ticket, make changes, then commit —
@@ -194,6 +196,27 @@ changes** when any Blocker/High is present.
 
 > Posting to a PR requires the [`gh`](https://cli.github.com) CLI, authenticated.
 > The test suite exercises posting only via `--print` (no network).
+
+---
+
+## swift-expert / kotlin-specialist (imported)
+
+iOS/Swift and Android/Kotlin implementation-guidance skills, imported from
+[jeffallan/claude-skills](https://github.com/jeffallan/claude-skills) (MIT). They
+are pure skill + `references/` (no scripts or tests), matching this repo's
+structure.
+
+- **`swift-expert/`** — SwiftUI, async/await concurrency, actors, protocol-oriented
+  design, memory/performance, testing. References under
+  [`swift-expert/references/`](swift-expert/references/).
+- **`kotlin-specialist/`** — coroutines/Flow, Jetpack Compose, Kotlin
+  Multiplatform, Ktor, DSLs. References under
+  [`kotlin-specialist/references/`](kotlin-specialist/references/).
+
+These complement the home-grown skills: use them for *writing* iOS/Android code,
+and `swiftui-code-review` for *reviewing* it. Attribution and license text are in
+[`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md); each imported `SKILL.md`
+also keeps its original `license`/`author` frontmatter.
 
 ---
 

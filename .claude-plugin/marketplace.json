@@ -30,12 +30,17 @@
         "swiftui",
         "ios",
         "swift",
+        "android",
+        "kotlin",
         "workflow"
       ],
       "tags": [
         "jira",
         "git",
         "ios",
+        "android",
+        "swift",
+        "kotlin",
         "swiftui",
         "code-review",
         "workflow"

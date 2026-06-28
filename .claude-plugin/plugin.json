@@ -17,12 +17,16 @@
     "swiftui",
     "ios",
     "swift",
+    "android",
+    "kotlin",
     "workflow"
   ],
   "skills": [
     "./jira-branch",
     "./jira-commit",
     "./jira-subtasks",
-    "./swiftui-code-review"
+    "./swiftui-code-review",
+    "./swift-expert",
+    "./kotlin-specialist"
   ]
 }
