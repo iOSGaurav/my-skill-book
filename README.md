@@ -12,6 +12,9 @@ jira-subtasks/    Plan platform-aware subtasks for a Jira story (copyable output
 swiftui-code-review/  Review SwiftUI/iOS changes; inline PR comments or HTML/MD report
 swift-expert/         iOS / Swift implementation guidance (imported)
 kotlin-specialist/    Android / Kotlin implementation guidance (imported)
+
+# plus 84 iOS framework skills imported from dpearson2699/swift-ios-skills
+# (swiftui-navigation/, swiftdata/, storekit/, healthkit/, widgetkit/, …)
 ```
 
 A typical flow: create a branch from a Jira ticket, make changes, then commit —
@@ -217,6 +220,24 @@ These complement the home-grown skills: use them for *writing* iOS/Android code,
 and `swiftui-code-review` for *reviewing* it. Attribution and license text are in
 [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md); each imported `SKILL.md`
 also keeps its original `license`/`author` frontmatter.
+
+---
+
+## iOS framework skills (imported from dpearson2699/swift-ios-skills)
+
+84 focused iOS skills, one folder per Apple framework / topic — e.g.
+`swiftui-navigation/`, `swiftui-animation/`, `swiftui-performance/`, `swiftdata/`,
+`storekit/`, `healthkit/`, `cloudkit/`, `widgetkit/`, `mapkit/`, `coreml/`,
+`push-notifications/`, `swift-concurrency/`, `swift-testing/`, and many more. Each
+is a `SKILL.md` + `references/` (upstream `evals/` were not imported).
+
+> **License:** these are under the **PolyForm Perimeter License 1.0.0**
+> (Copyright © 2025 dpearson2699), *not* MIT. PolyForm Perimeter restricts use
+> that competes with the licensor's product/service. The full license is in
+> [`licenses/swift-ios-skills-LICENSE.txt`](licenses/swift-ios-skills-LICENSE.txt)
+> and the required notice is in
+> [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md). Review the terms before
+> redistributing this repository.
 
 ---
 

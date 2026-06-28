@@ -1,5 +1,23 @@
 # Third-party licenses
 
+## dpearson2699/swift-ios-skills
+
+84 iOS skills (one folder per Apple framework/topic, e.g. `swiftui-navigation/`,
+`swiftdata/`, `storekit/`, `healthkit/`, …) were imported from
+[dpearson2699/swift-ios-skills](https://github.com/dpearson2699/swift-ios-skills).
+
+**Required Notice:** Copyright (c) 2025 dpearson2699
+(https://github.com/dpearson2699)
+
+These skills are licensed under the **PolyForm Perimeter License 1.0.0**. The
+full license text is preserved at
+[`licenses/swift-ios-skills-LICENSE.txt`](licenses/swift-ios-skills-LICENSE.txt).
+Each imported `SKILL.md` retains its original content. Only `SKILL.md` and
+`references/` were imported; upstream `evals/` were not.
+
+> Note: PolyForm Perimeter restricts use that competes with the licensor's
+> product/service. Review the license before redistributing this repository.
+
 ## jeffallan/claude-skills
 
 The following skills were imported from
