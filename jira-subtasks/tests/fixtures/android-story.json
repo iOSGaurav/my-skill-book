@@ -1,0 +1,16 @@
+{
+  "key": "PROJ-456",
+  "names": {
+    "summary": "Summary",
+    "description": "Description"
+  },
+  "fields": {
+    "summary": "Persist user preferences",
+    "issuetype": { "name": "Story" },
+    "labels": ["backend-needed"],
+    "components": [{ "name": "Android" }]
+  },
+  "renderedFields": {
+    "description": "<p>Store the user's theme &amp; notification preferences locally.</p>"
+  }
+}

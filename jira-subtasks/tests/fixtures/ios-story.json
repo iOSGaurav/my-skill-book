@@ -1,0 +1,18 @@
+{
+  "key": "PROJ-123",
+  "names": {
+    "summary": "Summary",
+    "description": "Description",
+    "customfield_10001": "Acceptance Criteria"
+  },
+  "fields": {
+    "summary": "Add login button to header",
+    "issuetype": { "name": "Story" },
+    "labels": ["iOS", "mobile"],
+    "components": [{ "name": "Authentication" }]
+  },
+  "renderedFields": {
+    "description": "<p>Users need a way to <b>sign in</b> from the header.</p><p>Tap should open the login sheet.</p>",
+    "customfield_10001": "<ul><li>Given a logged-out user, a Login button is visible in the header</li><li>Tapping it presents the login sheet</li><li>VoiceOver announces the button</li></ul>"
+  }
+}
