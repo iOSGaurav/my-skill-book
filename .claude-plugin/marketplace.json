@@ -1,0 +1,46 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "my-skill-book",
+  "version": "0.1.0",
+  "owner": {
+    "name": "Gaurav Parmar",
+    "email": "parmargaurav069@gmail.com"
+  },
+  "metadata": {
+    "description": "Jira + iOS workflow skills: Jira branch/commit/subtasks and a comprehensive SwiftUI/iOS code review."
+  },
+  "plugins": [
+    {
+      "name": "my-skill-book",
+      "description": "A Jira + iOS workflow toolkit: branch from a Jira ticket, commit with the Jira ID auto-prefixed, plan platform-aware subtasks, and run a comprehensive SwiftUI/iOS code review.",
+      "repository": "https://github.com/iOSGaurav/my-skill-book",
+      "version": "0.1.0",
+      "author": {
+        "name": "Gaurav Parmar",
+        "email": "parmargaurav069@gmail.com"
+      },
+      "category": "development",
+      "keywords": [
+        "jira",
+        "git",
+        "branch",
+        "commit",
+        "subtasks",
+        "code-review",
+        "swiftui",
+        "ios",
+        "swift",
+        "workflow"
+      ],
+      "tags": [
+        "jira",
+        "git",
+        "ios",
+        "swiftui",
+        "code-review",
+        "workflow"
+      ],
+      "source": "./"
+    }
+  ]
+}

@@ -1,8 +1,9 @@
 # my-skill-book
 
-A collection of Claude Code skills and agents for a Jira-based git workflow.
-Each feature lives in its own folder containing the skill (`SKILL.md`), the
-agent (`agent.md`), the worker script, and tests.
+A collection of Claude Code skills and agents for a Jira + iOS workflow. Each
+feature lives in its own folder containing the skill (`SKILL.md`), the agent
+(`agent.md`), a `references/` folder (modular docs + an `_index.md`), the worker
+script(s), and tests.
 
 ```
 jira-branch/      Create a git branch from a Jira ticket URL
@@ -13,6 +14,24 @@ swiftui-code-review/  Review SwiftUI/iOS changes; inline PR comments or HTML/MD 
 
 A typical flow: create a branch from a Jira ticket, make changes, then commit —
 the Jira ID flows automatically from the branch name into every commit message.
+
+### Structure
+
+Each skill folder follows the same layout (modeled on
+[AvdLee/Swift-Concurrency-Agent-Skill](https://github.com/AvdLee/Swift-Concurrency-Agent-Skill)):
+
+```
+<skill>/
+  SKILL.md          # Fast Path → routing → guardrails → reference router → checklist
+  agent.md          # companion subagent
+  references/        # modular reference docs + _index.md
+  scripts/           # deterministic worker(s)
+  tests/             # offline tests
+```
+
+The repo is also packaged as an installable Claude Code plugin via
+[`.claude-plugin/plugin.json`](.claude-plugin/plugin.json) and
+[`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
 
 ## Prerequisites
 
@@ -140,8 +159,10 @@ or targets both, you'll be asked which platform to plan for.
 
 Review SwiftUI / iOS changes against a comprehensive parameter checklist
 (state, performance, concurrency, memory, accessibility, security, testing,
-localization, DI, conventions, PR readiness — see
-[`swiftui-code-review/parameters.md`](swiftui-code-review/parameters.md)).
+localization, DI, conventions, PR readiness). The rubric is split into modular
+files under
+[`swiftui-code-review/references/`](swiftui-code-review/references/_index.md),
+one per category.
 
 Input can be a **GitHub PR URL**, a **branch**, or the **current working diff**.
 For a PR URL the review is posted as inline PR comments; otherwise an HTML report

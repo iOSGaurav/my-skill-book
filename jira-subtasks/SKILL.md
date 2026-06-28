@@ -14,63 +14,43 @@ Jira Cloud API token, exported as environment variables:
 - `JIRA_EMAIL` — your Atlassian account email
 - `JIRA_API_TOKEN` — https://id.atlassian.com/manage-profile/security/api-tokens
 
-## Workflow
+## Fast Path
 
-1. **Fetch the story** with the helper script:
+1. **Fetch the story:**
    ```bash
    scripts/fetch-story.sh "https://yourco.atlassian.net/browse/PROJ-123"
    ```
-   It prints summary, issue type, labels, components, description, acceptance
+   Prints summary, issue type, labels, components, description, acceptance
    criteria (if present), and a `Platform hint:`.
+2. **Determine the platform** from `Platform hint:`:
+   - `iOS` → plan with `references/ios.md`.
+   - `AOS/Android` → plan with `references/aos.md`.
+   - `unknown` or `both` → **ask the user** which platform to plan for. Plan one
+     platform per run.
+3. **Plan subtasks** = the platform template + AC-specific items (drop template
+   items that don't apply; add what the AC requires).
+4. **Output** in the exact shape from `references/output-format.md`.
 
-2. **Determine the platform** from `Platform hint:`. If it is `unknown` or
-   `both`, ask the user which platform to plan for (iOS or AOS). Plan one
-   platform per run.
-
-3. **Plan subtasks** = a per-platform standard template PLUS subtasks the
-   acceptance criteria specifically require. Drop template items that genuinely
-   don't apply to this story; add anything the AC needs.
-
-   **iOS template categories:**
-   - UI — SwiftUI view(s)
-   - State / logic — TCA reducer or ViewModel
-   - Data / networking
-   - Unit tests
-   - Snapshot tests
-   - Accessibility
-   - Analytics / telemetry
-
-   **AOS (Android) template categories:**
-   - UI — Jetpack Compose screen(s)
-   - State / logic — ViewModel
-   - Data / repository
-   - Unit tests
-   - Screenshot tests
-   - Accessibility
-   - Analytics / telemetry
-
-4. **Output** in this exact copyable shape:
-
-   ```
-   [<Platform>] <KEY> — Subtasks
-
-   --- Titles (copy for quick-add) ---
-   <subtask title 1>
-   <subtask title 2>
-   ...
-
-   --- Details ---
-   1. <subtask title 1>
-      <1–3 line description of the work, referencing the relevant AC>
-   2. <subtask title 2>
-      ...
-   ```
-
-   Titles are concise and imperative. Keep one subtask per line in the Titles
-   block so the user can paste them straight into Jira's quick-add subtask field.
-
-## Notes
+## Guardrails
 
 - Base subtask scope on the actual description + acceptance criteria; do not
   invent requirements that aren't there.
+- One subtask per coherent unit of work; concise imperative titles.
 - If acceptance criteria are missing, plan from the description and say so.
+- Plan a single platform per run; don't mix iOS and AOS subtasks in one output.
+
+## Reference Router
+
+See [`references/_index.md`](references/_index.md):
+
+- `references/ios.md` — iOS (SwiftUI/TCA) subtask template
+- `references/aos.md` — Android (Compose) subtask template
+- `references/output-format.md` — the exact copyable output shape
+
+## Verification Checklist
+
+1. The story was fetched and the platform decided (asked the user if ambiguous).
+2. Every template category was considered (included or consciously dropped).
+3. Each acceptance-criterion of substance maps to at least one subtask.
+4. Output matches `references/output-format.md`: header, Titles (one per line),
+   numbered Details aligned 1:1 with the titles.

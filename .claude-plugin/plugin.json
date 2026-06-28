@@ -1,0 +1,28 @@
+{
+  "name": "my-skill-book",
+  "version": "0.1.0",
+  "description": "A Jira + iOS workflow toolkit: branch from a Jira ticket, commit with the Jira ID auto-prefixed, plan platform-aware subtasks, and run a comprehensive SwiftUI/iOS code review.",
+  "author": {
+    "name": "Gaurav Parmar",
+    "email": "parmargaurav069@gmail.com"
+  },
+  "repository": "https://github.com/iOSGaurav/my-skill-book",
+  "keywords": [
+    "jira",
+    "git",
+    "branch",
+    "commit",
+    "subtasks",
+    "code-review",
+    "swiftui",
+    "ios",
+    "swift",
+    "workflow"
+  ],
+  "skills": [
+    "./jira-branch",
+    "./jira-commit",
+    "./jira-subtasks",
+    "./swiftui-code-review"
+  ]
+}

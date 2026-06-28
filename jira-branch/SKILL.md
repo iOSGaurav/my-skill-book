@@ -5,40 +5,50 @@ description: Use when the user wants to create, start, or check out a git branch
 
 # Jira Branch
 
-Create and check out a git branch named from a Jira ticket.
-
-Branch format: `<prefix>/<KEY>-<slug>`
-- `prefix` = `bugfix` when the Jira issue type is **Bug**, otherwise `feature`
-- `slug` = lowercased summary, non-alphanumerics collapsed to `-`, capped at 50 chars
-- Example: `feature/PROJ-123-add-login-button`
+Create and check out a git branch named from a Jira ticket. Branch format is
+`<prefix>/<KEY>-<slug>` (e.g. `feature/PROJ-123-add-login-button`) — full rules
+in `references/naming.md`.
 
 ## Prerequisites
 
-Set these environment variables (Jira Cloud API token, HTTP Basic auth):
+Jira Cloud API token, exported as environment variables (HTTP Basic auth):
 - `JIRA_EMAIL` — your Atlassian account email
-- `JIRA_API_TOKEN` — an API token from https://id.atlassian.com/manage-profile/security/api-tokens
+- `JIRA_API_TOKEN` — https://id.atlassian.com/manage-profile/security/api-tokens
 
 Must be run inside a git repository.
 
-## How to use
-
-Run the worker script with the Jira URL:
+## Fast Path
 
 ```bash
 scripts/create-branch.sh "https://yourco.atlassian.net/browse/PROJ-123"
 ```
 
-The script: parses the URL → fetches summary + issue type from the Jira REST API →
-computes the branch name → fetches the base branch → creates and checks out the new
-branch from it.
+The script parses the URL → fetches summary + issue type from the Jira REST API →
+computes the branch name (`references/naming.md`) → fetches the base branch →
+creates and checks out the new branch from it.
 
 Options:
-- `--base <branch>` — base off a specific branch (default: detected `origin/HEAD`, else `main`)
-- `--dry-run` — print the computed branch name and base, make no changes
-- `--summary <text> --type <type>` — skip the Jira fetch and supply details manually
+- `--base <branch>` — base off a specific branch (default: detected
+  `origin/HEAD`, else `main`)
+- `--dry-run` — print the computed branch name and base; make no changes
+- `--summary <text> --type <type>` — skip the Jira fetch and supply details
+  manually
 
-## What to report back
+## Guardrails
 
-After running, tell the user the branch that was created (or checked out) and the base
-it came from. If the script exits with an error, relay the error message — it is written
-to be actionable (auth failure, unknown key, not a git repo, etc.).
+- Run inside the target git repository.
+- Use `--dry-run` first if you want to preview the name before mutating git.
+- If the branch already exists, the script checks it out instead of failing.
+
+## Reference Router
+
+See [`references/_index.md`](references/_index.md):
+- `references/naming.md` — branch format, type→prefix mapping, slug rules, base
+  branch resolution, examples.
+
+## Verification Checklist
+
+1. The reported branch name matches the format in `references/naming.md`.
+2. The branch was created from (or checked out against) the intended base.
+3. On error, relay the script's message — they are actionable (auth failure,
+   unknown key, not a git repo, etc.).

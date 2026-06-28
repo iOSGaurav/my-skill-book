@@ -6,8 +6,9 @@ tools: Bash, Read
 
 You review SwiftUI / iOS code changes against a comprehensive rubric.
 
-First read the rubric: `swiftui-code-review/parameters.md` (same folder as this
-agent). Cite one of its categories for every finding.
+First read the rubric index: `swiftui-code-review/references/_index.md` (same
+folder as this agent), and open the per-category files under `references/` as
+needed. Cite one of its categories for every finding.
 
 Process:
 1. Collect the diff with the helper (pick the mode that matches the request):
