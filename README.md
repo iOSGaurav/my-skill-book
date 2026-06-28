@@ -11,9 +11,13 @@ skills/
   swiftui-code-review/  Review SwiftUI/iOS changes; inline PR comments or HTML/MD report
   swift-expert/         iOS / Swift implementation guidance (imported)
   kotlin-specialist/    Android / Kotlin implementation guidance (imported)
-  …                     plus ~100 imported iOS/Swift framework skills
-                        (swiftui-navigation/, swiftdata/, storekit/, widgetkit/, …)
+  …                     plus ~80 imported iOS/Swift skills, one folder each
+                        (swiftui-navigation/, swiftdata/, swift-concurrency/, …)
 ```
+
+**86 skills total:** 4 home-grown (the `jira-*` + `swiftui-code-review`, with
+scripts and tests) and the rest imported guidance skills (see
+[Imported skills](#imported-skills)).
 
 A typical flow: create a branch from a Jira ticket, make changes, then commit —
 the Jira ID flows automatically from the branch name into every commit message.
@@ -203,65 +207,57 @@ changes** when any Blocker/High is present.
 
 ---
 
-## swift-expert / kotlin-specialist (imported)
+## Imported skills
 
-iOS/Swift and Android/Kotlin implementation-guidance skills, imported from
-[jeffallan/claude-skills](https://github.com/jeffallan/claude-skills) (MIT). They
-are pure skill + `references/` (no scripts or tests), matching this repo's
-structure.
+Most skills in `skills/` are imported, focused iOS/Swift (and some Android)
+guidance skills — each a `SKILL.md` + `references/` (no scripts/tests). Examples:
+`swiftui-navigation/`, `swiftui-animation/`, `swiftdata/`, `swift-concurrency/`,
+`swift-testing/`, `swift-composable-architecture/`, `swift-expert/` (iOS),
+`kotlin-specialist/` (Android). They complement the home-grown skills: use them
+for *writing* iOS/Android code and `swiftui-code-review` for *reviewing* it.
 
-- **`swift-expert/`** — SwiftUI, async/await concurrency, actors, protocol-oriented
-  design, memory/performance, testing. References under
-  [`swift-expert/references/`](skills/swift-expert/references/).
-- **`kotlin-specialist/`** — coroutines/Flow, Jetpack Compose, Kotlin
-  Multiplatform, Ktor, DSLs. References under
-  [`kotlin-specialist/references/`](skills/kotlin-specialist/references/).
+### Sources & licenses
 
-These complement the home-grown skills: use them for *writing* iOS/Android code,
-and `swiftui-code-review` for *reviewing* it. Attribution and license text are in
-[`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md); each imported `SKILL.md`
-also keeps its original `license`/`author` frontmatter.
+| Source | License | Notes |
+|---|---|---|
+| [jeffallan/claude-skills](https://github.com/jeffallan/claude-skills) | **MIT** | `swift-expert`, `kotlin-specialist` |
+| [dpearson2699/swift-ios-skills](https://github.com/dpearson2699/swift-ios-skills) | **PolyForm Perimeter 1.0.0** ⚠️ | Apple-framework skills; `evals/` not imported |
+| [patrickserrano/skills](https://github.com/patrickserrano/skills) | **MIT** | iOS/macOS skills |
+| [qunwang6/swift-ios-ui](https://github.com/qunwang6/swift-ios-ui) | **No license** ⚠️ | `swift-ios-ui` |
+| [mosif16/codex-skills](https://github.com/mosif16/codex-skills) | **No license** ⚠️ | iOS/Swift/mobile skills only |
+| [nonameplum/agent-skills](https://github.com/nonameplum/agent-skills) | **No license** ⚠️ | Swift skills |
 
----
-
-## iOS framework skills (imported from dpearson2699/swift-ios-skills)
-
-84 focused iOS skills, one folder per Apple framework / topic — e.g.
-`swiftui-navigation/`, `swiftui-animation/`, `swiftui-performance/`, `swiftdata/`,
-`storekit/`, `healthkit/`, `cloudkit/`, `widgetkit/`, `mapkit/`, `coreml/`,
-`push-notifications/`, `swift-concurrency/`, `swift-testing/`, and many more. Each
-is a `SKILL.md` + `references/` (upstream `evals/` were not imported).
-
-> **License:** these are under the **PolyForm Perimeter License 1.0.0**
-> (Copyright © 2025 dpearson2699), *not* MIT. PolyForm Perimeter restricts use
-> that competes with the licensor's product/service. The full license is in
-> [`licenses/swift-ios-skills-LICENSE.txt`](licenses/swift-ios-skills-LICENSE.txt)
-> and the required notice is in
-> [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md). Review the terms before
-> redistributing this repository.
+> ⚠️ **Licensing matters before redistribution.** The dpearson skills are
+> **PolyForm Perimeter** (Copyright © 2025 dpearson2699) — which restricts use
+> that competes with the licensor's product/service — and three sources have **no
+> license** (all-rights-reserved by default). Full notices and license text are in
+> [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md) and
+> [`licenses/`](licenses/). Resolve these terms with the authors before relying on
+> or further distributing this repository.
 
 ---
 
 ## Using with Claude Code
 
-Each folder's `SKILL.md` and `agent.md` instruct Claude how to run the workflow.
-You can describe the task in natural language (e.g. "create a branch for this
-Jira ticket" / "commit these changes") and Claude follows the skill, or you can
-run the scripts directly as shown above.
+This repo is a Claude Code plugin: every skill under `skills/<name>/` is
+registered in [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json), and
+[`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) exposes it as
+a marketplace plugin.
 
-> Note: this repo uses a feature-grouped layout (skill + agent together per
-> folder), which is not Claude Code's auto-discoverable plugin format. To make
-> the skills/agents auto-discoverable, expose them via `skills/` + `agents/`
-> top-level dirs and a `.claude-plugin/plugin.json` manifest.
+Each skill's `SKILL.md` instructs Claude how to run it. Describe the task in
+natural language (e.g. "create a branch for this Jira ticket", "commit these
+changes", "review this PR") and Claude follows the matching skill — or run the
+scripts directly as shown above. The home-grown skills also include an `agent.md`
+companion subagent.
 
 ## Tests
 
-```bash
-bash jira-branch/tests/test.sh
-bash jira-commit/tests/test.sh
-bash jira-subtasks/tests/test.sh
-bash swiftui-code-review/tests/test.sh
-```
+The four home-grown skills have offline test suites (no Jira, no network — they
+use dry-run / print modes and a throwaway git repo):
 
-Both suites run offline (no Jira, no network) using dry-run / print modes and a
-throwaway git repo.
+```bash
+bash skills/jira-branch/tests/test.sh
+bash skills/jira-commit/tests/test.sh
+bash skills/jira-subtasks/tests/test.sh
+bash skills/swiftui-code-review/tests/test.sh
+```
